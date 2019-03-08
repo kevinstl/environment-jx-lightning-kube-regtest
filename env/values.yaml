@@ -1,4 +1,10 @@
 PipelineSecrets: {}
+bitcoind-kube:
+  project:
+    namespace: lightning-kube-regtest
+    network: regtest
+    networkSuffix: -regtest
+    storage: 5Gi
 cleanup:
   Annotations:
     helm.sh/hook: pre-delete
@@ -21,10 +27,3 @@ jenkins:
   Servers:
     Global: {}
 prow: {}
-
-bitcoind-kube:
-  project:
-    namespace: lightning-kube-regtest
-    network: regtest
-    networkSuffix: -regtest
-    storage: 5Gi
