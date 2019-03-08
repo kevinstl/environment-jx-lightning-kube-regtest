@@ -1,4 +1,19 @@
 PipelineSecrets: {}
+bitcoind-kube:
+  configurationFile:
+    bitcoin.conf: |-
+      server=1
+      rpcuser=devuser_change
+      rpcpassword=devpass_change
+      regtest=1
+      zmqpubrawblock=tcp://127.0.0.1:28332
+      zmqpubrawtx=tcp://127.0.0.1:28333
+      txindex=1
+  project:
+    namespace: lightning-kube-regtest
+    network: regtest
+    networkSuffix: -regtest
+    storage: 5Gi
 cleanup:
   Annotations:
     helm.sh/hook: pre-delete
@@ -21,20 +36,3 @@ jenkins:
   Servers:
     Global: {}
 prow: {}
-
-bitcoind-kube:
-  project:
-    namespace: lightning-kube-regtest
-    network: regtest
-    networkSuffix: -regtest
-    storage: 5Gi
-
-  configurationFile:
-    bitcoin.conf: |-
-      server=1
-      rpcuser=devuser_change
-      rpcpassword=devpass_change
-      regtest=1
-      zmqpubrawblock=tcp://127.0.0.1:28332
-      zmqpubrawtx=tcp://127.0.0.1:28333
-      txindex=1
