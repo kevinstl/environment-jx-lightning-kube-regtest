@@ -21,3 +21,10 @@ jenkins:
   Servers:
     Global: {}
 prow: {}
+
+btcd-kube:
+  project:
+    namespace: lightning-kube-regtest
+    network: regtest
+    networkSuffix: -regtest
+    storage: 5Gi
