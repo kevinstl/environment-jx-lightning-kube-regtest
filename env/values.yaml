@@ -22,7 +22,7 @@ jenkins:
     Global: {}
 prow: {}
 
-btcd-kube:
+bitcoind-kube:
   project:
     namespace: lightning-kube-regtest
     network: regtest
