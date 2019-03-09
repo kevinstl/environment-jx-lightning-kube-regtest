@@ -38,3 +38,9 @@ bitcoind-kube:
       zmqpubrawblock=tcp://127.0.0.1:28332
       zmqpubrawtx=tcp://127.0.0.1:28333
       txindex=1
+
+lnd-kube:
+  project:
+    namespace: lightning-kube-regtest
+    network: regtest
+    networkSuffix: -regtest
