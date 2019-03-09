@@ -1,5 +1,5 @@
 dependencies:
-- name: bitcoind-kube
+  version: 0.0.35
   repository: http://jenkins-x-chartmuseum:8080
   version: 0.0.17
 - alias: expose
