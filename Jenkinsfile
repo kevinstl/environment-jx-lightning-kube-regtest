@@ -1,34 +1,20 @@
 pipeline {
-  options {
-    disableConcurrentBuilds()
-  }
   agent {
-    label "jenkins-maven"
+    label "jenkins-go"
   }
   environment {
-    DEPLOY_NAMESPACE = "lightning-kube-regtest"
+    ORG = 'REPLACE_ME_ORG'
+    APP_NAME = 'REPLACE_ME_APP_NAME'
+    CHARTMUSEUM_CREDS = credentials('jenkins-x-chartmuseum')
   }
   stages {
-    stage('Validate Environment') {
-      steps {
-        container('maven') {
-          dir('env') {
-            sh 'jx step helm build'
-          }
-        }
-      }
-    }
-    stage('Update Environment') {
+    stage('CI Build and push snapshot') {
       when {
-        branch 'master'
+        branch 'PR-*'
+      }
+      environment {
+        PREVIEW_VERSION = "0.0.0-SNAPSHOT-$BRANCH_NAME-$BUILD_NUMBER"
+        PREVIEW_NAMESPACE = "$APP_NAME-$BRANCH_NAME".toLowerCase()
+        HELM_RELEASE = "$PREVIEW_NAMESPACE".toLowerCase()
       }
       steps {
-        container('maven') {
-          dir('env') {
-            sh 'jx step helm apply'
-          }
-        }
-      }
-    }
-  }
-}
