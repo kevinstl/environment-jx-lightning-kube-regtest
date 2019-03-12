@@ -35,11 +35,12 @@ bitcoind-kube:
       rpcuser=devuser_change
       rpcpassword=devpass_change
       regtest=1
-#      zmqpubrawblock=tcp://127.0.0.1:28332
-#      zmqpubrawtx=tcp://127.0.0.1:28333
       zmqpubrawblock=tcp://0.0.0.0:28332
       zmqpubrawtx=tcp://0.0.0.0:28333
       txindex=1
+
+#      zmqpubrawblock=tcp://127.0.0.1:28332
+#      zmqpubrawtx=tcp://127.0.0.1:28333
 
 lnd-kube:
   project:
